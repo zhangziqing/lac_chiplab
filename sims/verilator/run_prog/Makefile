@@ -62,8 +62,8 @@ link:
 include ../../../chip/config-generator.mak 
 
 ifeq ('${MYCPU}', 'y') 
-VERILATOR_INCLUDE += -y ${MYCPU_SRC} 
-VERILATOR_SRC += ${MYCPU_SRC}/*.v
+VERILATOR_INCLUDE += $(addprefix -y , $(shell find ${MYCPU_SRC}/ -maxdepth 4 -type d))
+VERILATOR_SRC += ${MYCPU_SRC}/*.sv
 endif
 
 ifeq ('${BRIDGE}', 'y') 
